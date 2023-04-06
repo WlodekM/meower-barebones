@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="index.js"></script>
+    <script src="errors.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu">
+    <meta name="color-scheme" content="light dark">
+    <meta charset="UTF-8">
+    <meta name="description" content="Best meower client">
+    <meta name="keywords" content="meower, client, meower client, best meower, best client, best meower client">
+    <meta name="author" content="WlodekM">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meower No CL client</title>
+</head>
+<body>
+    <div class=top>
+        <h1 id="logo">Meower NCL</h1>
+        <div id=controls>
+            <input type="text" id="username" value="Username">
+            <div id=spacer style="width:25px;"></div>
+            <label for="badwords">Allow bad words:</label><input type="checkbox" id="badwords">
+            <div id=spacer style="width:50px;"></div>
+            <button id="reload">Reload</button>
+        </div>
+    </div>
+    <div class="posting">
+        <textarea rows="4" class="container type-message" style="resize: none;width:calc(100% - (11px * 2) - 100px)"></textarea>
+        <button id="postbutton">Post!</button>
+    </div>
+    <div id="posts">
+        
+    </div>
+</body>
+<style>
+body{
+    font-family: 'Ubuntu';
+    margin: 0;
+}
+.posting {
+    display: flex;
+}
+.posting button {
+    width: 100px;
+    margin: 8px;
+}
+.top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: hsl(0, 0%, 25%);
+}
+.top h1 {
+    cursor: pointer;
+    padding-inline: 8px;
+    padding-block-start: 0.67em;
+    padding-block-end: 0.67em;
+    height: 100%;
+    margin: 0;
+    transition: background 0.5s;
+}
+.top h1:hover{
+    background: rgba(255,255,255,0.25);
+}
+.post, .container {
+    border-radius: 5px;
+    border: 2px rgba(255,255,255,0.2) solid;
+}
+.post{
+    padding: 4px;
+    margin-top: 10px;
+}
+.post img {
+    width: 150px;
+    height: auto;
+    border-radius: 5px;
+    border: 1px rgba(255, 255, 255, 0.1) solid;
+}
+.type-message {
+    margin: 8px;
+    border-width: 1px;
+}
+#username{
+    font-weight: bold;
+}
+#posts {
+    padding: 8px;
+    padding-top: 0;
+}
+#controls {
+    padding-block: 8px;
+    padding-inline-end: 8px;
+    display: flex;
+    align-items: center;
+}
+</style>
+</html>
