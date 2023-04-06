@@ -2,7 +2,16 @@ async function getJSONData(url, params) {
 	const response = await fetch(url + new URLSearchParams(params));
 	const jsonData = await response.text();
 	return(Promise.resolve(jsonData));
-  }
+}
+function deHTML( input ) {
+	let dhout = input
+	dhout = dhout.replaceAll("&", "&amp;");
+	dhout = dhout.replaceAll("<", "&lt;");
+	dhout = dhout.replaceAll(">", "&gt;");
+	dhout = dhout.replaceAll('"', "&quot;");
+	dhout = dhout.replaceAll("'", "&apos;");
+	return dhout
+}
 const urlSearchParams = new URLSearchParams(window.location.search);
 console.log(urlSearchParams);
 const params = Object.fromEntries(urlSearchParams.entries());
@@ -43,7 +52,11 @@ function ghome(data) {
 	data_["autoget"].forEach(element => {
 		try {
 			if(element["unfiltered_p"] && (document.getElementById("badwords").checked)) {
-				$("#posts").append(`<div class="post"><span id=username>${element["u"]}</span><p>${element["unfiltered_p"]}</p></div>`)
+				if(["Discord","Webhooks","Revower"].includes(element["u"])) {
+					element["u"]            = element["unfiltered_p"].split(":")[0]
+					element["unfiltered_p"] = element["unfiltered_p"].split(":").slice(1).join(":")
+				}
+				$("#posts").append(`<div class="post"><span id=username>${element["u"]}</span><p>${deHTML(element["unfiltered_p"])}</p></div>`)
 				// console.log(`${element["u"]}${element["unfiltered_p"]}`)
 			} else {
 				// console.log(`${element["p"]}`)
@@ -51,7 +64,7 @@ function ghome(data) {
 					element["u"] = element["p"].split(":")[0]
 					element["p"] = element["p"].split(":").slice(1).join(":")
 				}
-				$("#posts").append(`<div class="post"><span id=username>${element["u"]}</span><p>${element["p"]}</p></div>`)
+				$("#posts").append(`<div class="post"><span id=username>${element["u"]}</span><p>${deHTML(element["p"])}</p></div>`)
 			}
 		} catch(err) {
 			console.log(`ERROR ON:${element}`);
