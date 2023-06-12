@@ -107,7 +107,10 @@ function ghome(data) {
 					const iterator = element["p"].matchAll(
 						/\[([^\]]+?): (https:\/\/[^\]]+?)\]/gs
 					);
-					images = [];
+					// ytUrl = "https://www.youtube.com/watch?v=DGIXT7ce3vQ"
+					// // replace:
+					// ytUrl.replace('/watch?v=', '/embed/')
+					[images, videos] = [[], []];
 					while (true) {
 						const result = iterator.next();
 						if (result.done) break
@@ -132,6 +135,11 @@ function ghome(data) {
 					$(`#${element["post_id"]}`).append(`<div class="post-images" id="${element["post_id"]}-images"></div>`)
 	
 					images.forEach(imag => {
+						console.log(`${element["post_id"]}-images : ${imag["url"]}`);
+
+						$(`#${element["post_id"]}-images`).append(`<img src="${imag["url"]}">`)
+					});
+					videos.forEach(video => {
 						console.log(`${element["post_id"]}-images : ${imag["url"]}`);
 
 						$(`#${element["post_id"]}-images`).append(`<img src="${imag["url"]}">`)
