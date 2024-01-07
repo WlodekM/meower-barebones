@@ -158,15 +158,15 @@ function ghome(data) {
 function reload() {
 	if (hpage == null) {
 		if (is404) {
-			getJSONData('https://api.meower.org/404')
+			getJSONData('https://api.meower.org/404?autoget')
 				.then((data) => { ghome(data) })
 		} else {
-			getJSONData('https://api.meower.org/home')
+			getJSONData('https://api.meower.org/home?autoget')
 				.then((data) => { ghome(data) })
 		}
 	} else {
 		console.log(`Loading page ${hpage}`);
-		getJSONData(`https://api.meower.org/home?`, { "page": hpage })
+		getJSONData(`https://api.meower.org/home?`, { "page": hpage }, "autoget")
 			.then((data) => { ghome(data) })
 	}
 }
