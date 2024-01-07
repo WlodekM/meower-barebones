@@ -1,3 +1,23 @@
+exampleSocket = new WebSocket("wss://server.meower.org/")
+function sendDirect(val) {
+	exampleSocket.send(JSON.stringify({
+		"cmd": "direct",
+		"val": val
+	}))
+}
+let started = false
+exampleSocket.onmessage = (event) => {
+	console.log(event.data);
+	if (JSON.parse(event.data)["cmd"] == "statuscode" && !started) {
+		started = true
+		sendDirect("meower")
+		console.log("meower")
+	}
+	if (JSON.parse(event.data)["val"]["post_origin"]) {
+		reload()
+	}
+};
+
 async function getJSONData(url, params) {
 	const response = await fetch(url + new URLSearchParams(params));
 	const jsonData = await response.text();
@@ -19,7 +39,7 @@ const IMAGE_HOST_WHITELIST = [
 	"https://assets.meower.org/",
 	"https://api.meower.org/",
 	"https://forums.meower.org/",
-	
+
 	// not everyone can add urls to go.meower.org, should be fine
 	"https://go.meower.org/",
 	"https://nextcloud.meower.org/",
@@ -133,7 +153,7 @@ function ghome(data) {
 					images = images;
 					$("#posts").append(`<div class="post" id="${element["post_id"]}"><span id=username>${element["u"]}</span><p>${deHTML(element["p"])}</p></div>`)
 					$(`#${element["post_id"]}`).append(`<div class="post-images" id="${element["post_id"]}-images"></div>`)
-	
+
 					images.forEach(imag => {
 						console.log(`${element["post_id"]}-images : ${imag["url"]}`);
 
