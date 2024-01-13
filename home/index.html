@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="./index.js" type="module"></script>
+    <script src="../errors.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu">
+    <link rel="stylesheet" href="../style.css">
+    <meta name="color-scheme" content="light dark">
+    <meta charset="UTF-8">
+    <meta name="description" content="Best meower client">
+    <meta name="keywords" content="meower, client, meower client, best meower, best client, best meower client">
+    <meta name="author" content="WlodekM">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meower Barebones client</title>
+</head>
+<body>
+    <div class=top>
+        <h1 id="logo">Meower Barebones</h1>
+        <div id=controls>
+            <input type="text" id="username" value="Username">
+            <!-- <div id=spacer style="width:25px;"></div> -->
+            <!-- <label for="badwords">Show bad words:</label><input type="checkbox" id="badwords"> -->
+            <div id=spacer style="width:50px;"></div>
+            <button id="reload">Reload</button>
+        </div>
+    </div>
+    <div class="posting">
+        <!-- style="resize: none;width:calc(100% - (11px * 2) - 100px)" -->
+        <textarea rows="4"></textarea>
+        <button id="postbutton">Post!</button>
+    </div>
+    <div id="posts">
+        
+    </div>
+</body>
+</html>
